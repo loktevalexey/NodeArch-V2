@@ -3,11 +3,7 @@ function newConnectionFactory(pool,res) {
     return new Promise( (resolve,reject) => {
         pool.getConnection(function(err,connection){
             if ( err ) {
-                if ( res ) {
-                    res.status(500);
-                    res.send("");
-                }
-                console.error(err);
+                reject(err);
             }
             else {
                 resolve(connection);

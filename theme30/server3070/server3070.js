@@ -60,6 +60,11 @@ webserver.post('/service6', (req, res) => {
     res.send("service6 ok, login="+req.body.login+" age="+req.body.age);
 });
 
+webserver.get('/service7', (req, res) => {
+    logLineSync(logFN,`[${port}] `+'service7 called');
+    res.sendFile( path.resolve(__dirname,"hello.txt") );
+});
+
 webserver.listen(port,()=>{
     logLineSync(logFN,"web server running on port "+port);
 });
