@@ -32,7 +32,7 @@ webserver.post('/service1', (req, res) => {
 
     if ( contentType==="application/json" ) {
         logLineSync(logFN,"получено тело запроса в формате JSON");
-        logLineSync(logFN,req.body.aaa+" "+req.body.bbb); // тело запроса преобразовано мидлварью express.json() в хэш
+        logLineSync(logFN,req.body.aaa+" "+req.body.bbb); // тело запроса преобразовано мидлварью express.json() в объект
     }
     else if ( contentType==="application/xml" ) {
         logLineSync(logFN,"получено тело запроса в формате XML");
