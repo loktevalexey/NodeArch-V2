@@ -60,6 +60,9 @@ const service4files = upload.fields( [ {name:'photo', maxCount:1} ] );
 webserver.post('/service4', service4files, (req, res) => { 
     logLineSync(logFN,`[${port}] `+"service4 called");
 
+    res.setHeader("Access-Control-Allow-Origin","*"); 
+    res.setHeader("Access-Control-Allow-Headers","Content-Type");
+
     console.log("request post data",req.body);
     console.log("request files",req.files); // req.files заполнила миддлварь upload.fields
     
