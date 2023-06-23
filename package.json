@@ -1,17 +1,18 @@
 {
-  "name": "nodearch",
+  "name": "nodearch2",
   "version": "0.0.1",
-  "description": "Node.js web projects architecture",
+  "description": "Node.js web projects architecture v2",
   "main": "index.js",
   "scripts": {
     "servers": "nodemon servers/servers.js",
+    "server3070": "nodemon theme30/server3070/server3070.js",
     "servers_filelog": "node servers/servers.js >> /home/nodeuser/NodeArch/_nodemon.log",
     "server3085:dev": "cross-env NODE_ENV=development VAR1=aaa node theme30/server3085/server3085.js",
     "server3085:prod": "cross-env NODE_ENV=production VAR1=bbb node theme30/server3085/server3085.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/loktevalexey/NodeArch.git"
+    "url": "https://github.com/loktevalexey/NodeArch-V2.git"
   },
   "keywords": [],
   "author": "Loktev Alexey",

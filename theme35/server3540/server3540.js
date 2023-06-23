@@ -31,16 +31,16 @@ webserver.post('/service1', (req, res) => {
     const contentType=req.headers['content-type'];
 
     if ( contentType==="application/json" ) {
-        console.log("получено тело запроса в формате JSON");
-        console.log(req.body); // тело запроса преобразовано мидлварью express.json() в хэш
+        logLineSync(logFN,"получено тело запроса в формате JSON");
+        logLineSync(logFN,req.body); // тело запроса преобразовано мидлварью express.json() в хэш
     }
     else if ( contentType==="application/xml" ) {
-        console.log("получено тело запроса в формате XML");
-        console.log(req.rawBody); // мидлварь anyBodyParser поместила тело запроса в req.rawBody; есть и специализированные мидлвари для этого
+        logLineSync(logFN,"получено тело запроса в формате XML");
+        logLineSync(logFN,req.rawBody); // мидлварь anyBodyParser поместила тело запроса в req.rawBody; есть и специализированные мидлвари для этого
     }
     else {
-        console.log("получено тело запроса в формате "+contentType);
-        console.log(req.body); // тело запроса осталось неизменённым, как прислал клиент
+        logLineSync(logFN,"получено тело запроса в формате "+contentType);
+        logLineSync(logFN,req.body); // тело запроса осталось неизменённым, как прислал клиент
     }
 
     res.setHeader("Access-Control-Allow-Origin","*");
