@@ -22,7 +22,7 @@ webserver.get('/service1', (req, res) => {
 
     // этот сервис ожидает данных формы в формате application/x-www-form-urlencoded
 
-    console.log("request params",req.query);
+    logLineSync(logFN,"request params",req.query);
 
     res.setHeader("Access-Control-Allow-Origin","*"); // нужно, т.к. мы к этому сервису и через AJAX будем обращаться
     res.send("ok login="+req.query.login);
@@ -33,7 +33,7 @@ webserver.post('/service2', (req, res) => {
 
     // этот сервис ожидает данных формы в формате application/x-www-form-urlencoded
 
-    console.log("request post data",req.body);
+    logLineSync(logFN,"request post data",req.body);
 
     res.setHeader("Access-Control-Allow-Origin","*"); // нужно, т.к. мы к этому сервису и через AJAX будем обращаться
     res.send("ok login="+req.body.login);
@@ -42,7 +42,7 @@ webserver.post('/service2', (req, res) => {
 webserver.post('/service3', upload.none(), (req, res) => { // миддлварь, просто разбирающая данные формы в формате multipart/form-data
     logLineSync(logFN,`[${port}] `+"service3 called");
 
-    console.log("request post data",req.body);
+    logLineSync(logFN,"request post data",req.body);
     
     res.send("ok login="+req.body.login);
 });
@@ -63,8 +63,8 @@ webserver.post('/service4', service4files, (req, res) => {
     res.setHeader("Access-Control-Allow-Origin","*"); 
     res.setHeader("Access-Control-Allow-Headers","Content-Type");
 
-    console.log("request post data",req.body);
-    console.log("request files",req.files); // req.files заполнила миддлварь upload.fields
+    logLineSync(logFN,"request post data",req.body);
+    logLineSync(logFN,"request files",req.files); // req.files заполнила миддлварь upload.fields
     
     res.send("ok login="+req.body.login);
 });
@@ -83,12 +83,12 @@ webserver.post('/service5', (req, res) => {
     fileProgress.headers = req.headers; // и ставим в progress те же заголовки что были у req
 
     fileProgress.on('progress', info => {
-        console.log('loaded '+info.transferred+' bytes of '+fileLength);
+        logLineSync(logFN,'loaded '+info.transferred+' bytes of '+fileLength);
     });
 
     service5file(fileProgress, res, async (err) => {
         if (err) return res.status(500);
-        console.log('file saved, origin filename='+fileProgress.file.originalname+', store filename='+fileProgress.file.filename);
+        logLineSync(logFN,'file saved, origin filename='+fileProgress.file.originalname+', store filename='+fileProgress.file.filename);
         res.send("ok login="+fileProgress.body.login);
     });
 
@@ -114,7 +114,7 @@ webserver.post('/service6', busboy(), (req, res) => {
 
         reqFiles[fieldname]={originalFN:filename,storedPFN:storedPFN};
 
-        console.log(`Uploading of '${filename}' started`);
+        logLineSync(logFN,`Uploading of '${filename}' started`);
 
         const fstream = fs.createWriteStream(storedPFN);
         
@@ -122,17 +122,17 @@ webserver.post('/service6', busboy(), (req, res) => {
 
         file.on('data', function(data) {
             totalDownloaded += data.length;
-            console.log('loaded '+totalDownloaded+' bytes of '+totalRequestLength);
+            logLineSync(logFN,'loaded '+totalDownloaded+' bytes of '+totalRequestLength);
         });
 
         file.on('end', () => {
-            console.log('file '+fieldname+' received');
+            logLineSync(logFN,'file '+fieldname+' received');
         });
     });
     
     req.busboy.on('finish', async () => {
 
-        console.log('file saved, origin filename='+reqFiles.photo.originalFN+', store filename='+reqFiles.photo.storedPFN);
+        logLineSync(logFN,'file saved, origin filename='+reqFiles.photo.originalFN+', store filename='+reqFiles.photo.storedPFN);
         res.send("ok login="+reqFields.login);
         
     });
