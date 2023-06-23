@@ -47,6 +47,14 @@ webserver.post('/service3', upload.none(), (req, res) => { // миддлварь
     res.send("ok login="+req.body.login);
 });
 
+webserver.options('/service4', (req, res) => { 
+    // реакция на preflight-запрос - позволяем обращаться к этому сервису кому угодно
+    // это не пригодится при отправке запроса через форму! 
+    // CORS применяется только при отправке AJAX-запросов
+    res.setHeader("Access-Control-Allow-Origin","*"); 
+    res.setHeader("Access-Control-Allow-Headers","Content-Type");
+    res.send("");
+});
 // миддлварь, разбирающая данные формы в формате multipart/form-data и сохраняющая файл, прилетевший под именем photo
 const service4files = upload.fields( [ {name:'photo', maxCount:1} ] ); 
 webserver.post('/service4', service4files, (req, res) => { 
