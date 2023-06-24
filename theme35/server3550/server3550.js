@@ -33,7 +33,7 @@ webserver.post('/service2', (req, res) => {
 
     // этот сервис ожидает данных формы в формате application/x-www-form-urlencoded
 
-    logLineSync(logFN,"request post data "+req.body);
+    logLineSync(logFN,"request post data "+req.body.login);
 
     res.setHeader("Access-Control-Allow-Origin","*"); // нужно, т.к. мы к этому сервису и через AJAX будем обращаться
     res.send("ok login="+req.body.login);
@@ -42,7 +42,7 @@ webserver.post('/service2', (req, res) => {
 webserver.post('/service3', upload.none(), (req, res) => { // миддлварь, просто разбирающая данные формы в формате multipart/form-data
     logLineSync(logFN,`[${port}] `+"service3 called");
 
-    logLineSync(logFN,"request post data "+req.body);
+    logLineSync(logFN,"request post data "+req.body.login);
     
     res.send("ok login="+req.body.login);
 });
@@ -63,7 +63,7 @@ webserver.post('/service4', service4files, (req, res) => {
     res.setHeader("Access-Control-Allow-Origin","*"); 
     res.setHeader("Access-Control-Allow-Headers","Content-Type");
 
-    logLineSync(logFN,"request post data "+req.body);
+    logLineSync(logFN,"request post data "+req.body.login);
     logLineSync(logFN,"request files "+JSON.stringify(req.files)); // req.files заполнила миддлварь upload.fields
     
     res.send("ok login="+req.body.login);
