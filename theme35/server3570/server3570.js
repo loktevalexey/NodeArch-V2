@@ -12,6 +12,7 @@ const logFN = path.join(__dirname, '_server.log');
 webserver.get('/service1', (req, res) => { 
     logLineSync(logFN,`[${port}] `+"service1 called");
 
+    res.setHeader("Access-Control-Allow-Origin","*"); // нужно, т.к. мы к этому сервису и через AJAX будем обращаться
     res.setHeader("Content-Type", "text/plain; charset=UTF-8");
 
     var readStream=fs.createReadStream( path.join(__dirname,"files/text_utf8.txt") );
@@ -21,6 +22,7 @@ webserver.get('/service1', (req, res) => {
 webserver.get('/service2', (req, res) => { 
     logLineSync(logFN,`[${port}] `+"service2 called");
 
+    res.setHeader("Access-Control-Allow-Origin","*"); // нужно, т.к. мы к этому сервису и через AJAX будем обращаться
     res.setHeader("Content-Type", "text/plain; charset=windows-1251");
 
     var readStream=fs.createReadStream( path.join(__dirname,"files/text_win1251.txt") );
