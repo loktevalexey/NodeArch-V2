@@ -13,15 +13,15 @@ const logFN = path.join(__dirname, '_server.log');
 webserver.get("/mysite/*", (req, res) => { 
 
     // мы будем часть "сырого" УРЛа (req.originalUrl) использовать как имя файла в файловой системе
-    // но в УРЛе пробелы, русские буквы и другие символы url-кодируются (из " " получается "%20", из "п" - "%D0%BF")
+    // но в УРЛе пробелы, русские буквы и другие символы кодируются в формат www-form-urlencoded (из " " получается "%20", из "п" - "%D0%BF")
     // а в именах файлов в файловой системе такое кодирование не применяется
-    // в браузере декодирование из УРЛ-формата в обычную строку делается вызовом urldecode
+    // в браузере декодирование из формата www-form-urlencoded в обычную строку делается вызовом decodeURIComponent
     // под Node.js - вызовом querystring.unescape
     // в req.params (данные из частей УРЛа, пока не проходили), req.query (get-данные), req.body (post-данные) это декодирование уже сделано
     const originalUrlDecoded=querystring.unescape(req.originalUrl);
     logLineSync(logFN,`[${port}] `+"static server called, originalUrl="+req.originalUrl+", originalUrlDecoded="+originalUrlDecoded);
 
-    const filePath=path.resolve(__dirname,"../site_football",originalUrlDecoded.substring(8)); // 8 тут - magic number, в боевом коде надо покрасивее
+    const filePath=path.resolve(__dirname,"../site_football",originalUrlDecoded.substring(8)); // 8 тут - magic number, в промышленном коде надо покрасивее
 
     try {
         const stats=fs.statSync(filePath); // узнаём, есть ли ЭТО в папке site_football, и что ЭТО - папка или файл
