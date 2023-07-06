@@ -1,5 +1,5 @@
 const path = require('path');
-const fsp = require('fs').promises; // используем экспериментальное API работы с файлами, основанное на промисах
+const fsp = require('fs').promises; // используем API работы с файлами, основанное на промисах
 
 (async function() {
     try {
