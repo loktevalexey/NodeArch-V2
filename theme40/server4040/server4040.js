@@ -16,12 +16,11 @@ webserver.use(function (req, res, next) {
 webserver.use(function(req, res, next) {
     if ( req.path==="/mysite/file1.jpg" ) {
         logLineSync(logFN,`[${port}] `+"sending file...");
-        res.setHeader("Content-Disposition","attachment");
+        // установка заголовка Content-Disposition: attachment не требуется
         res.download(path.resolve(__dirname,"../site_football/football.jpg"));
     } 
     else if ( req.path==="/mysite/file2.jpg" ) {
         logLineSync(logFN,`[${port}] `+"sending file...");
-        res.setHeader("Content-Disposition","attachment");
         res.download(path.resolve(__dirname,"../site_football/football.jpg"),"download_file2.jpg");
     } 
     else

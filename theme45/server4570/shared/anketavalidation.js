@@ -7,7 +7,7 @@ function right(str,len) {
 }
 
 function getAnketaValidationErrors(anketa) {
-    // вернёт массив хэшей структуры { fldname:string, errortext:string, focusfldname:string }
+    // вернёт массив объектов структуры { fldname:string, errortext:string, focusfldname:string }
     // fldname - имя поля в котором ошибка или null, errortext - текст ошибки, focusfldname - какое поле сфокусировать или null
 
     let errors=[];
