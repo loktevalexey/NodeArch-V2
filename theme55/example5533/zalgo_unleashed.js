@@ -39,7 +39,7 @@ broadcaster1.addListener( value => { console.log("слушатель №2: "+val
 setTimeout(()=>{
 
     console.log("создаём второй оповещатель");
-    broadcaster2=new Broadcaster;
+    broadcaster2=new Broadcaster; // когда конструктор вызывает loadData, СРАЗУ (синхронно) вызываются слушатели, но мы же ещё их не добавили!
     broadcaster2.addListener( value => { console.log("слушатель №3: "+value); } );
     broadcaster2.addListener( value => { console.log("слушатель №4: "+value); } );
         
