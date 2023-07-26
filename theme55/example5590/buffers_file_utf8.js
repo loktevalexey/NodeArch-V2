@@ -9,7 +9,7 @@ console.log(txt_data,txt_data.length);
 
 // если явно не запросить представление в виде строки - получим просто буфер, массив байтов
 let buffer_data=fs.readFileSync(path.resolve(__dirname,"data","data_utf8.txt"));
-console.log("данные в виде буфера:");
+console.log("те же данные в виде буфера:");
 console.log(buffer_data,buffer_data.length);
 // кроме букв, видим в начале строки байты ef bb bf - это utf8-символ BOF, begin of file
 

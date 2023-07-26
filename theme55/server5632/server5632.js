@@ -6,7 +6,7 @@ const { logLineSync } = require('../../utils/utils');
 const port = 5632;
 const logFN = path.join(__dirname, '_server.log');
 
-let clients=[]; // здесь будут хэши вида { connection:, lastkeepalive:NNN }
+let clients=[]; // здесь будут объекты вида { connection:, lastkeepalive:NNN }
 
 let timer=0;
 
