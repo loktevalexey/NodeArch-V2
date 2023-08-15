@@ -50,7 +50,7 @@ webserver.get('/groups', (req, res) => {
                 // в results в полях lessons_start_dat сейчас дата, если её запаковать в JSON - получится строка, это неэкономно
                 // СОГЛАШЕНИЕ: дату передаём в обе стороны в виде количества секунд
                 let pureResults=results.map( row => ({ id: row.id, name: row.name, lessons_start_dat: Math.round(row.lessons_start_dat/1000) }) );
-                res.send(pureResults); // если в send передаётся хэш - он автоматом переводится в JSON и ответу выставляется соответствующий Content-Type
+                res.send(pureResults); // если в send передаётся объект - он автоматом переводится в JSON и ответу выставляется соответствующий Content-Type
             }
             connection.end();
         });

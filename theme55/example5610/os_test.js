@@ -3,7 +3,7 @@ const os = require('os');
 console.log("os.EOL",JSON.stringify(os.EOL)); // в Windows строки заканчиваются на \r\n, в Linux - на \n
 
 console.log("os.cpus()",os.cpus()); // информация о процессорах системы
-// возвращается массив хэшей вида { model: 'Intel(R) Core(TM) i7-8550U CPU @ 1.80GHz', speed: 1992, ... }
+// возвращается массив объектов вида { model: 'Intel(R) Core(TM) i7-8550U CPU @ 1.80GHz', speed: 1992, ... }
 
 console.log("os.totalmem()",os.totalmem()); // общий объём оперативной памяти, байт
 console.log("os.freemem()",os.freemem()); // свободно оперативной памяти, байт

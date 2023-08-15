@@ -28,7 +28,7 @@ const { getUrls } = require("./all_urls");
     // у нас система индексации для внутреннего поиска хранит этот момент в index_urls в поле last_modification_dt
     // по каждому УРЛу делать отдельный запрос в index_urls дорого, поэтому зачитаем всю эту таблицу сразу
     let indexUrls=await selectQueryFactory(connection, `select url, last_modification_dt from index_urls;`, []);
-    // построим хэш, ключ - УРЛ, значение - момент последней модификации
+    // построим объект, ключ - УРЛ, значение - момент последней модификации
     let lastModificationsHash={};
     indexUrls.forEach( indexUrl => {
         lastModificationsHash[indexUrl.url]=indexUrl.last_modification_dt;

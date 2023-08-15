@@ -33,7 +33,7 @@ async function composeContent(contentId,coreData,appData) {
     for ( let cb=0; cb<contentBlocks.length; cb++ ) {
         const contentBlock=contentBlocks[cb];
 
-        // у каждого блока могут быть индивидуальные опции в поле block_attributes, распарсим в хэш
+        // у каждого блока могут быть индивидуальные опции в поле block_attributes, распарсим в объект
         let blockAttributes={};
         if ( contentBlock.block_attributes && contentBlock.block_attributes.trim() ) {
             try {
