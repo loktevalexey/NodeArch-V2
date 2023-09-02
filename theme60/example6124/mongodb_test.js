@@ -15,7 +15,9 @@ MongoClient.connect(serverURL, { useNewUrlParser: true, useUnifiedTopology: true
         const studentsCollection = database.collection('Student'); // получаем ссылку на коллекцию
         
         // вставляем новые документы
-        studentsCollection.insertMany([ {name:'Сидоров', height:185}, {name:'Григорьев', height:192} ], function(err, result) {
+        studentsCollection.insertMany(
+          [ {name:'Сидоров', height:185}, {name:'Григорьев', height:192} ], 
+          function(err, result) {
             if ( err )
                 console.error(err);
             else {

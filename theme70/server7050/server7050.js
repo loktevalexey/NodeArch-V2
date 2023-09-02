@@ -31,7 +31,7 @@ const serverRenderer = (req, res) => {
         logLineAsync(logFN,`[${port}] server-side rendered HTML ready, url=${req.originalUrl}, HTML length=${renderedHTML.length}`);
 
         // отдаём клиенту index.html с подставленным в container HTML-кодом
-        // тем самым кодом, который React должен строить динамически внутри container
+        // тем самым кодом, который React должен строить динамически внутри этого же container
         return res.send(
             indexStr.replace(
                 '<div id="container"></div>',
@@ -48,7 +48,7 @@ webserver.use(function (req, res, next) {
 });
 */
 
-// если обращение идёт УРЛу / - запускаем SSR
+// если обращение идёт к УРЛу / - запускаем SSR
 webserver.use(/^\/$/, serverRenderer);
 // на самом деле, serverRenderer готов обработать любой УРЛ, но мы ПЕРЕД ним должны через middleware static отдать бандлы из папки build
 // а там есть файл index.html
