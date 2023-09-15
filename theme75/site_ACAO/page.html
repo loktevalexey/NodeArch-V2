@@ -7,8 +7,8 @@
 
 <body>
 
-<input type=button value='скачать №1' onclick="download('https://lenta.ru/manifest.json')"><br>
-<input type=button value='скачать №2' onclick="download('http://nodearch.e-learning.by:7640/manifest.json')"><br>
+<input type=button value='скачать №1' onclick="download('https://www.arsys.es/get/css/parking.css')"><br>
+<input type=button value='скачать №2' onclick="download('http://nodearch.e-learning.by:7640/get/css/parking.css')"><br>
 
 <script>
 
@@ -20,7 +20,7 @@ async function download(url) {
     };
     const response=await fetch(url,fetchOptions);
     if ( response.ok ) {
-        const data=await response.json();
+        const data=await response.text();
         console.log("данные успешно прочитаны");
         console.log(data);
     }
