@@ -1,4 +1,5 @@
 ﻿const express = require('express');
+const path = require('path');
 
 const webserver = express(); // создаём веб-сервер
 
@@ -43,6 +44,12 @@ webserver.get('/service4', (req, res) => {
 webserver.get('/service5', (req, res) => { 
     // при обращении по этому УРЛу - ответа просто не будет
     console.log(`service5 called`);
+});
+
+webserver.get('/service7', (req, res) => {
+    // при обращении по этому УРЛу - возвращается содержимое файла hello.txt
+    console.log(`service7 called`);
+    res.sendFile( path.resolve(__dirname,"hello.txt") );
 });
 
 // просим веб-сервер слушать входящие HTTP-запросы на этом порту
