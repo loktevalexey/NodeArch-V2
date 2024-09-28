@@ -48,8 +48,9 @@ webserver.get('/service5', (req, res) => {
 
 webserver.get('/service7', (req, res) => {
     // при обращении по этому УРЛу - возвращается содержимое файла hello.txt
-    console.log(`service7 called`);
+    console.log(`service7 called, __dirname=${__dirname}`);
     res.sendFile( path.resolve(__dirname,"hello.txt") );
+    //res.sendFile( __dirname+"\\hello.txt" ); // в общем случае небезопасно
 });
 
 // просим веб-сервер слушать входящие HTTP-запросы на этом порту
