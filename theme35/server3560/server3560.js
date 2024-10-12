@@ -35,7 +35,7 @@ webserver.get('/service3', (req, res) => {
 });
 
 webserver.get('/service4', (req, res) => { 
-    logLineSync(logFN,`[${port}] `+"service3 called");
+    logLineSync(logFN,`[${port}] `+"service4 called");
 
     res.setHeader("Content-Disposition", 'attachment; filename="fff.html"');
     res.setHeader("Content-Type", "text/html");

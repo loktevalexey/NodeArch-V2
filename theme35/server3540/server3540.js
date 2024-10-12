@@ -7,8 +7,8 @@ const { logLineSync } = require('../../utils/utils');
 const webserver = express();
 
 webserver.use(express.json()); // мидлварь, умеющая обрабатывать тело запроса в формате JSON
+webserver.use(anyBodyParser);  // это самописная мидлварь, которая тело запроса в виде строки XML помещает в req.rawBody
 webserver.use(bodyParser.text()); // мидлварь, умеющая обрабатывать тело запроса в текстовом формате (есть и bodyParser.json())
-webserver.use(anyBodyParser);  // это самописная мидлварь, которая тело запроса в виде строки помещает в req.rawBody
 
 const port = 3540;
 const logFN = path.join(__dirname, '_server.log');
@@ -53,6 +53,8 @@ webserver.listen(port,()=>{
 });
 
 function anyBodyParser(req, res, next) {
+    // мидлварь трактует тело запроса как текст, кладёт его в req.rawBody
+    // мы будем использовать её именно если тело запроса - в формате XML
     const contentType=req.headers['content-type'];
     if ( contentType==="application/xml" ) {
         var data = '';

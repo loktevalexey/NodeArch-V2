@@ -7,8 +7,8 @@ const { logLineSync } = require('../../utils/utils');
 const webserver = express();
 
 webserver.use(express.json());
-webserver.use(bodyParser.text());
 webserver.use(anyBodyParser);  // это самописная мидлварь, которая тело запроса в виде строки помещает в req.rawBody
+webserver.use(bodyParser.text());
 
 const port = 3545;
 const logFN = path.join(__dirname, '_server.log');
