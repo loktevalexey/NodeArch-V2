@@ -4,7 +4,7 @@ const fsp = require('fs').promises; // используем API работы с 
 const querystring = require('querystring');
 const Jimp = require('jimp');
 
-const { logLineAsync, getTempFileName } = require('../../utils/utils');
+const { logLineSync, getTempFileName } = require('../../utils/utils');
 
 const webserver = express();
 
@@ -18,14 +18,14 @@ webserver.use(
 
 webserver.get(/^\/image\/(([a-zA-Z\d]+)_thumb\.(jpg|jpeg|gif|png))$/, async (req, res) => {
 
-    // попадающие сюда УРЛы попадают также и в предыдущий обработчик
+    // попадающие сюда УРЛы попадают сначала в предыдущий обработчик
     // и если он нашёл файл с таким именем в папке images_full - он его возвращает клиенту и цепочка обработчиков прерывается
     // а если не нашёл - цепочка обработчиков продолжается и мы попадаем сюда
 
     const fullFileName=querystring.unescape(req.params[0]); // если УРЛ для обработчика задан регуляркой, то в req.params попадает каждая скобочная группа из регулярки
     const fileNameOnly=querystring.unescape(req.params[1]);
     const fileExtName=querystring.unescape(req.params[2]); // тут не может быть никаких особых символов, но лучше всегда unescape-ить всё что взято напрямую из УРЛа
-    logLineAsync(logFN,`[${port}] пришёл запрос на автоуменьшенную картинку, полное имя файла = ${fullFileName}, имя исходного файла = ${fileNameOnly}, расширение исходного файла = ${fileExtName}`);
+    logLineSync(logFN,`[${port}] пришёл запрос на автоуменьшенную картинку, полное имя файла = ${fullFileName}, имя исходного файла = ${fileNameOnly}, расширение исходного файла = ${fileExtName}`);
 
     const thumbPFN=path.resolve(__dirname,"images_thumb",fullFileName);
 
@@ -33,7 +33,7 @@ webserver.get(/^\/image\/(([a-zA-Z\d]+)_thumb\.(jpg|jpeg|gif|png))$/, async (req
     try {
         const stats=await fsp.stat(thumbPFN);
         if ( stats.isFile() ) {
-            logLineAsync(logFN,`[${port}] есть готовая маленькая картинка ${fullFileName}, отдаём её`);
+            logLineSync(logFN,`[${port}] есть готовая маленькая картинка ${fullFileName}, отдаём её`);
             res.sendFile( thumbPFN );
         }   
         else {
@@ -41,13 +41,13 @@ webserver.get(/^\/image\/(([a-zA-Z\d]+)_thumb\.(jpg|jpeg|gif|png))$/, async (req
         }
     }
     catch ( err ) {
-        logLineAsync(logFN,`[${port}] нет готовой маленькой картинки ${fullFileName}, будем сжимать большую и сохранять результат на будущее`);
+        logLineSync(logFN,`[${port}] нет готовой маленькой картинки ${fullFileName}, будем сжимать большую и сохранять результат на будущее`);
 
         const originPFN=path.resolve(__dirname,"images_full",`${fileNameOnly}.${fileExtName}`);
         let compressStartDT=new Date();
         await compressImage(originPFN,thumbPFN,300);
         let compressDurationMS=(new Date())-compressStartDT;
-        logLineAsync(logFN,`[${port}] сохранена маленькая картинка ${fullFileName}, сжатие заняло ${compressDurationMS} мс`);
+        logLineSync(logFN,`[${port}] сохранена маленькая картинка ${fullFileName}, сжатие заняло ${compressDurationMS} мс`);
         
         res.sendFile( thumbPFN );
     }
@@ -55,7 +55,7 @@ webserver.get(/^\/image\/(([a-zA-Z\d]+)_thumb\.(jpg|jpeg|gif|png))$/, async (req
 });
 
 webserver.listen(port,()=>{
-    logLineAsync(logFN,"web server running on port "+port);
+    logLineSync(logFN,"web server running on port "+port);
 });
 
 // масштабирует картинку из sourcePFN в resultPFN с указанной шириной с сохранением пропорций

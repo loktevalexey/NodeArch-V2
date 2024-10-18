@@ -2,7 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const { logLineAsync } = require('../../utils/utils');
+const { logLineSync } = require('../../utils/utils');
 
 const webserver = express();
 
@@ -14,7 +14,7 @@ const logFN = path.join(__dirname, '_server.log');
 const usersFN = path.join(__dirname, 'users.json');
 
 webserver.post('/register', (req, res) => { 
-    logLineAsync(logFN,`[${port}] `+'регистрируем пользователя, login='+req.body.login+" age="+req.body.age);
+    logLineSync(logFN,`[${port}] `+'регистрируем пользователя, login='+req.body.login+" age="+req.body.age);
 
     let usersJSON=fs.readFileSync(usersFN,"utf8");
     let users=JSON.parse(usersJSON);
@@ -31,5 +31,5 @@ webserver.post('/register', (req, res) => {
 });
 
 webserver.listen(port,()=>{
-    logLineAsync(logFN,"web server running on port "+port);
+    logLineSync(logFN,"web server running on port "+port);
 });

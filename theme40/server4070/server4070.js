@@ -1,6 +1,7 @@
 ﻿const express = require('express');
 const cookieParser = require('cookie-parser');
 const path = require('path');
+const fs = require('fs');
 
 const { logLineAsync } = require('../../utils/utils');
 
@@ -34,7 +35,9 @@ webserver.get("/hello", (req, res) => {
         logLineAsync(logFN,`[${port}] `+"пользователя мы уже знаем, покажем ему страницу об этом");
 
         const filePath=path.resolve(__dirname,"../site_cookies/known_user.html");
-        sendPage(res,filePath);
+        let content=fs.readFileSync(filePath,"utf8");
+        content=content.replace("{name}",req.cookies.username);
+        res.send(content);
     }
 });
 
