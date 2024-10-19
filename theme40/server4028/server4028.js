@@ -21,7 +21,7 @@ webserver.get("/mysite/*", (req, res) => {
         const stats=fs.statSync(filePath);
         if ( stats.isFile() ) {
 
-            let fileModDT=new Date(stats.birthtimeMs);
+            let fileModDT=new Date(stats.mtimeMs);
             let lastModifiedStr=fileModDT.toUTCString();
 
             let ETag="$$$"+fileName+"$$$"; // чисто для демонстрации; ETag следует считать как CRC от содержимого файла
