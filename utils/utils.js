@@ -33,8 +33,10 @@ function logLineAsync(logFilePath,logLine) {
                 reject(err);
             else    
                 fs.write(logFd, fullLogLine + os.EOL, (err) => {
-                    if ( err )
+                    if ( err ) {
                         reject(err); 
+                        // ещё хорошо бы закрыть файл logFd!
+                    }
                     else    
                         fs.close(logFd, (err) =>{
                             if ( err )

@@ -15,12 +15,12 @@ webserver.use(function (req, res, next) {
 
 webserver.get("/main1.html", function (req, res) {
     logLineSync(logFN,`[${port}] `+"root URL, permanently redirecting...");
-    res.redirect(301,'/mysite/page.html')
+    res.redirect(301,'/mysite/page.html');
 });
 
 webserver.get("/main2.html", function (req, res) {
     logLineSync(logFN,`[${port}] `+"root URL, temporarily redirecting...");
-    res.redirect(302,'/mysite/page.html')
+    res.redirect(302,'/mysite/page.html');
 });
 
 webserver.use(
