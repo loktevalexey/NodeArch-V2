@@ -44,7 +44,7 @@ describe('service call tests', function() {
         params.append('im', "Пётр");
         params.append('otch', "Сергеевич");
         params.append('gender', "M");
-        console.log(params.toString());
+        //console.log(params.toString());
    
         const fetchOptions={
             method: "post",
@@ -66,7 +66,7 @@ describe('service call tests', function() {
         params.append('im', "Пётр");
         params.append('otch', "Сергеевич");
         params.append('gender', "M");
-        console.log(params.toString());
+        //console.log(params.toString());
    
         const fetchOptions={
             method: "post",

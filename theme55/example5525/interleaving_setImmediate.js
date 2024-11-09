@@ -1,4 +1,6 @@
-setInterval(()=>{ console.log("сделан кусок ПЕРВОЙ работы...") },1000);
+setInterval(()=>{ 
+    console.log("сделан кусок ПЕРВОЙ работы...");
+},1000);
 
 function work2() {
     let sum=0;
