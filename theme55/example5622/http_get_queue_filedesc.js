@@ -31,7 +31,6 @@ const req = http.request(options, (res) => {
     //fs.writeSync(logFd, fullLogLine + os.EOL);
     //fs.closeSync(logFd);
 
-
     let taskQueue=new TaskQueue(); // очередь задач по открытию файла и сохранению чанков
     let downloadFinished=false;
     let fd=null; // дескриптор файла

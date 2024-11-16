@@ -5,7 +5,8 @@ const path = require("path");
 // но мы-то знаем, что в файле лежит utf8-строка, поэтому сразу говорим - представь нам прочитанное в виде utf8-строки
 let txt_data=fs.readFileSync(path.resolve(__dirname,"data","data_utf8.txt"),"utf8");
 console.log("текстовые данные в запрошенной кодировке:");
-console.log(txt_data,txt_data.length);
+console.log(txt_data,"|",txt_data[0],"|",txt_data[1],"|",txt_data.length);
+console.log(txt_data,"|",txt_data[0].charCodeAt(),"|",txt_data[1].charCodeAt(),"|",txt_data.length);
 
 // если явно не запросить представление в виде строки - получим просто буфер, массив байтов
 let buffer_data=fs.readFileSync(path.resolve(__dirname,"data","data_utf8.txt"));

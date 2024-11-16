@@ -1,5 +1,6 @@
 ﻿const EventEmitter = require('events');
 
+// секундомер, поток событий о времени
 class MyTimer extends EventEmitter {
 
     constructor(interval) {
