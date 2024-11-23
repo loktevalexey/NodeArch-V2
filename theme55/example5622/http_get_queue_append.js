@@ -31,6 +31,7 @@ const req = http.request(options, (res) => {
     let downloadFinished=false;
 
     res.on('data', chunk => {
+        console.log(chunk.length+' downloaded...');
       
         function task() {
 
@@ -40,7 +41,7 @@ const req = http.request(options, (res) => {
                     if (err) 
                         reject(err);
                     else {    
-                        console.log(chunk.length+' downloaded...');
+                        console.log(chunk.length+' saved...');
                         resolve();
                     }
                 });

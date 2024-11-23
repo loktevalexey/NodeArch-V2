@@ -7,7 +7,7 @@ class TaskQueue extends EventEmitter {
 
     constructor() {
         super();
-        this.queue=[];
+        this.queue=[]; // массив асинхронных функций-задач
         this.taskRunning=false;
     }
 
