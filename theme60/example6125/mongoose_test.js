@@ -27,6 +27,8 @@ db.once('open', function() {
     */
 
     // модель - это класс, который позволяет работать с коллекцией в стиле ООП
+    // имя коллекции автоматом строится из имени модели - Student->students,
+    // но можно вручную задать любое
     var Student = mongoose.model('Student', studentSchema);
 
     var ivanov = new Student({ name: 'Иванов', height: 180 });
