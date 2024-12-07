@@ -26,7 +26,8 @@ webserver.use(function (req, res, next) {
     }
    
     // счётчик просмотров этой страницы этим посетителем увеличиваем на 1
-    req.session.views[req.originalUrl] = (req.session.views[req.originalUrl] || 0) + 1; 
+    req.session.views[req.originalUrl] = 
+      (req.session.views[req.originalUrl] || 0) + 1; 
    
     next();
 });
