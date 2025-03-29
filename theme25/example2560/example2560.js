@@ -22,7 +22,7 @@ switch ( arg1 ) {
         process.exit(); // немедленно остановить выполнение программы
         // break; - можно не писать - выполнение сюда не дойдёт
     case "c":
-        console.log("arg1=c - terminating carefully");
+        console.log("arg1=c - terminating carefully, my pid="+process.pid);
         process.kill(process.pid, 'SIGTERM'); // корректно остановить программу
         break; // надо писать - выполнение сюда МОЖЕТ дойти
     case "d":
