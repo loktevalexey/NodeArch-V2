@@ -13,10 +13,10 @@ webserver.set('views', path.join(__dirname, 'views'));
 const port = 4544;
 const logFN = path.join(__dirname, '_server.log');
 
-const menu=[
-    {text:"главная",ref:"/main.html"},
-    {text:"футбол",ref:"/football.html"},
-    {text:"биатлон",ref:"/biathlon.html"},
+const menu=[                               // для "футбол":
+    {text:"главная",ref:"/main.html"},     // isCurrent===false
+    {text:"футбол",ref:"/football.html"},  // isCurrent===true
+    {text:"биатлон",ref:"/biathlon.html"}, // isCurrent===false
 ];
 
 function getMenu(currentUrl) {
