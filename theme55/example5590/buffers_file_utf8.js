@@ -12,7 +12,7 @@ console.log(txt_data,"|",txt_data[0].charCodeAt(),"|",txt_data[1].charCodeAt(),"
 let buffer_data=fs.readFileSync(path.resolve(__dirname,"data","data_utf8.txt"));
 console.log("те же данные в виде буфера:");
 console.log(buffer_data,buffer_data.length);
-// кроме букв, видим в начале строки байты ef bb bf - это utf8-символ BOF, begin of file
+// кроме букв, видим в начале строки байты ef bb bf - это utf8-символ BOM, bytes order marker
 
 // буфер можно преобразовать в строку, по-умолчанию предполагается что буфер представляет байты utf8-строки
 console.log(buffer_data.toString());
