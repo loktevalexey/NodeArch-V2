@@ -27,6 +27,7 @@ const serverRenderer = (req, res) => {
                 <CoreApp />
             </StaticRouter>
         );
+
         //console.log("renderedHTML",renderedHTML);
         logLineAsync(logFN,`[${port}] server-side rendered HTML ready, url=${req.originalUrl}, HTML length=${renderedHTML.length}`);
 
