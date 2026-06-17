@@ -48,6 +48,6 @@
     "react-dom": "^16.6.3",
     "react-router": "^7.15.1",
     "react-router-dom": "^7.5.2",
-    "ws": "^7.5.10"
+    "ws": "^7.5.11"
   }
 }
