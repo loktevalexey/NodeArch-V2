@@ -46,7 +46,7 @@
     "progress-stream": "^2.0.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "react-router": "^7.15.0",
+    "react-router": "^7.15.1",
     "react-router-dom": "^7.5.2",
     "ws": "^7.5.10"
   }
